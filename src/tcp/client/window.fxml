@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:controller="tcp.client.WindowController"
+      xmlns:fx="http://javafx.com/fxml"
+      alignment="TOP_CENTER" spacing="8">
+
+    <padding>
+        <Insets top="16" bottom="16"/>
+    </padding>
+
+    <VBox spacing="6" alignment="CENTER">
+        <HBox alignment="BASELINE_CENTER">
+            <Label text="IP Address:" minWidth="66"/>
+            <TextField fx:id="ip" text="127.0.0.1" prefWidth="100"/>
+        </HBox>
+        <HBox alignment="BASELINE_CENTER">
+            <Label text="Port:" prefWidth="66"/>
+            <TextField fx:id="port" text="3000" prefWidth="100"/>
+        </HBox>
+        <Button text="Connect" onMouseClicked="#connect" prefWidth="166"/>
+    </VBox>
+
+    <Separator/>
+
+    <VBox spacing="6" disable="true" fx:id="inputPanel" alignment="BASELINE_CENTER">
+        <HBox alignment="BASELINE_CENTER" spacing="14">
+            <Label text="Ticket number:"/>
+            <TextField fx:id="ticket"  text="0"  prefWidth="150"/>
+        </HBox>
+        <Button text="Send" onMouseClicked="#sendRequest" prefWidth="150"/>
+    </VBox>
+
+    <Separator>
+        <padding>
+            <Insets top="16" bottom="16"/>
+        </padding>
+    </Separator>
+
+    <VBox spacing="6"
+          alignment="TOP_CENTER">
+        <TextArea fx:id="output" maxWidth="250"/>
+    </VBox>
+
+</VBox>
