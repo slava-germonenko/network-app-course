@@ -11,11 +11,13 @@ public class CustomRequestProcessor implements IRequestProcessor {
     @Override
     public String execute(String request) {
         Double paramA = getParamValue(request, paramAPattern);
-        if(paramA == null) return "Error: invalid parameter A!";
+        if(paramA == null) return "Error: failed to parse parameter A, parameters must be numbers!";
         Double paramB = getParamValue(request, paramBPattern);
-        if(paramB == null) return "Error: invalid parameter B!";
+        if(paramB == null) return "Error: failed to parse parameter B, parameters must be numbers!";
         Double paramC = getParamValue(request, paramCPattern);
-        if(paramC == null) return "Error: invalid parameter C!";
+        if(paramC == null) return "Error: failed to parse parameter C, parameters must be numbers!";
+
+        if(paramA > paramB || paramB > paramC) return "Error: invalid parameters!";
 
         return "Result: " + resolve(paramA, paramB, paramC);
     }
@@ -42,6 +44,16 @@ public class CustomRequestProcessor implements IRequestProcessor {
     }
 
     private double resolve(Double paramA, Double paramB, Double paramC) {
-        return paramA + paramB + paramC;
+        double sum1 = 0d;
+        double sum2 = 0d;
+        for(double n = paramA; n < paramB; n++) {
+            sum1 += Math.pow(n, 2 - n);
+        }
+
+        for(double n = paramB; n < paramC; n++) {
+            sum2 += Math.pow(n - 1, 2);
+        }
+
+        return  sum1 = sum2;
     }
 }
