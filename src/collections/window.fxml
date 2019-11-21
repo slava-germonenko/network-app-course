@@ -13,22 +13,22 @@
 
     <TableView fx:id="view">
         <columns>
-            <TableColumn fx:id="contractIdColumn" text="Contract ID" />
-            <TableColumn fx:id="customerColumn" text="Customer" />
-            <TableColumn fx:id="loadColumn" text="Load Type" />
-            <TableColumn fx:id="loadMassColumn" text="Load Mass" />
-            <TableColumn fx:id="transportColumn" text="Transport" />
-            <TableColumn fx:id="costColumn" text="Cost" />
+            <TableColumn fx:id="contractIdColumn" text="Contract ID" minWidth="100.0" maxWidth="100.0" />
+            <TableColumn fx:id="customerColumn" text="Customer" minWidth="100.0" maxWidth="100.0" />
+            <TableColumn fx:id="loadColumn" text="Load Type" minWidth="100.0" maxWidth="100.0" />
+            <TableColumn fx:id="loadMassColumn" text="Load Mass" minWidth="100.0" maxWidth="100.0" />
+            <TableColumn fx:id="transportColumn" text="Transport" minWidth="100.0" maxWidth="100.0" />
+            <TableColumn fx:id="costColumn" text="Cost" minWidth="100.0" maxWidth="100.0" />
         </columns>
     </TableView>
 
     <HBox>
         <HBox>
-            <Button text="Add" onMouseClicked="#onAdd" />
-            <Button text="Edit" onMouseClicked="#onEdit" />
-            <Button text="Delete" onMouseClicked="#onDelete" />
-            <Button text="Filter" onMouseClicked="#onFilter" />
-            <Button text="Show all" onMouseClicked="#onReset" />
+            <Button text="Add" minWidth="120.0" maxWidth="120.0" />
+            <Button text="Edit" minWidth="120.0" maxWidth="120.0" />
+            <Button text="Delete" minWidth="120.0" maxWidth="120.0"/>
+            <Button text="Filter" minWidth="120.0" maxWidth="120.0" />
+            <Button text="Reload" minWidth="120.0" maxWidth="120.0" />
         </HBox>
     </HBox>
 </VBox>
