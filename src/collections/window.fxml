@@ -24,11 +24,11 @@
 
     <HBox>
         <HBox>
-            <Button text="Add" minWidth="120.0" maxWidth="120.0" onMouseClicked="#onAdd"/>
-            <Button text="Edit" minWidth="120.0" maxWidth="120.0" />
-            <Button text="Delete" minWidth="120.0" maxWidth="120.0" onMouseClicked="#onDelete"/>
-            <Button text="Filter" minWidth="120.0" maxWidth="120.0" />
-            <Button text="Reload" minWidth="120.0" maxWidth="120.0" />
+            <Button text="Add" minWidth="120.0" maxWidth="120.0" onMouseClicked="#onAdd" />
+            <Button text="Edit" minWidth="120.0" maxWidth="120.0" onMouseClicked="#onEdit" />
+            <Button text="Delete" minWidth="120.0" maxWidth="120.0" onMouseClicked="#onDelete" />
+            <Button text="Sort" minWidth="120.0" maxWidth="120.0" onMouseClicked="#onSort" />
+            <Button text="Reload" minWidth="120.0" maxWidth="120.0" onMouseClicked="#onReload" />
         </HBox>
     </HBox>
 </VBox>

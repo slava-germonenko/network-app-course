@@ -44,6 +44,14 @@ public class Controller implements Initializable {
         result.ifPresent(transfer -> observable.add(transfer));
     }
 
+    public void onSort() {
+        view.setItems(view.getItems().sorted());
+    }
+
+    public void onReload() {
+        view.setItems(observable);
+    }
+
     public void onDelete() {
         observable.remove(view.getSelectionModel().getSelectedIndex());
     }
