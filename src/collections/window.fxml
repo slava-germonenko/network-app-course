@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.Button?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="collections.Controller"
+      prefHeight="400.0" prefWidth="600.0">
+
+    <TableView fx:id="view">
+        <columns>
+            <TableColumn fx:id="contractIdColumn" text="Contract ID" minWidth="100.0" maxWidth="100.0" />
+            <TableColumn fx:id="customerColumn" text="Customer" minWidth="100.0" maxWidth="100.0" />
+            <TableColumn fx:id="loadColumn" text="Load Type" minWidth="100.0" maxWidth="100.0" />
+            <TableColumn fx:id="loadMassColumn" text="Load Mass" minWidth="100.0" maxWidth="100.0" />
+            <TableColumn fx:id="transportColumn" text="Transport" minWidth="100.0" maxWidth="100.0" />
+            <TableColumn fx:id="costColumn" text="Cost" minWidth="100.0" maxWidth="100.0" />
+        </columns>
+    </TableView>
+
+    <HBox>
+        <HBox>
+            <Button text="Add" minWidth="120.0" maxWidth="120.0" onMouseClicked="#onAdd" />
+            <Button text="Edit" minWidth="120.0" maxWidth="120.0" onMouseClicked="#onEdit" />
+            <Button text="Delete" minWidth="120.0" maxWidth="120.0" onMouseClicked="#onDelete" />
+            <Button text="Sort" minWidth="120.0" maxWidth="120.0" onMouseClicked="#onSort" />
+            <Button text="Reload" minWidth="120.0" maxWidth="120.0" onMouseClicked="#onReload" />
+        </HBox>
+    </HBox>
+</VBox>
