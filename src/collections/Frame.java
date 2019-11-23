@@ -70,17 +70,25 @@ class Frame extends Dialog<Transfer> {
         try {
             contractId = Integer.parseInt(ContractIdField.getText());
             cost = Integer.parseInt(CostField.getText());
-            loadMass = Double.parseDouble(LoadField.getText());
+            loadMass = Double.parseDouble(LoadMassField.getText());
         } catch (NumberFormatException ignored) {
             System.out.println("Invalid data!");
             return null;
         }
 
-        if (contractId <= 0 || loadMass <= 0 || cost <= 0) {
+        if (contractId < 0 || loadMass <= 0 || cost <= 0) {
             System.out.println("Wrong input data");
             return null;
         }
 
-        return new Transfer(contractId, customer, load, loadMass, transport, cost);
+        var result = new Transfer();
+        result.setContractId(contractId);
+        result.setCustomer(customer);
+        result.setLoad(load);
+        result.setLoadMass(loadMass);
+        result.setTransport(transport);
+        result.setCost(cost);
+
+        return result;
     }
 }

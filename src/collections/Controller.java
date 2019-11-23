@@ -9,6 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -29,12 +30,30 @@ public class Controller implements Initializable {
         inputFrame = new Frame();
     }
 
+    public void onAdd() {
+        inputFrame.resetForm();
+        Optional<Transfer> result = inputFrame.showAndWait();
+        result.ifPresent(transfer -> observable.add(transfer));
+    }
+
+    public void onEdit() {
+        var item = view.getFocusModel().getFocusedItem();
+        if (item == null) return;
+        inputFrame.setForm(item);
+        Optional<Transfer> result = inputFrame.showAndWait();
+        result.ifPresent(transfer -> observable.add(transfer));
+    }
+
+    public void onDelete() {
+        observable.remove(view.getSelectionModel().getSelectedIndex());
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        contractIdColumn.setCellValueFactory(new PropertyValueFactory<>("Contract ID"));
+        contractIdColumn.setCellValueFactory(new PropertyValueFactory<>("ContractId"));
         customerColumn.setCellValueFactory(new PropertyValueFactory<>("Customer"));
-        loadColumn.setCellValueFactory(new PropertyValueFactory<>("Load Type"));
-        loadMassColumn.setCellValueFactory(new PropertyValueFactory<>("Load Mass"));
+        loadColumn.setCellValueFactory(new PropertyValueFactory<>("Load"));
+        loadMassColumn.setCellValueFactory(new PropertyValueFactory<>("LoadMass"));
         transportColumn.setCellValueFactory(new PropertyValueFactory<>("Transport"));
         costColumn.setCellValueFactory(new PropertyValueFactory<>("Cost"));
 
