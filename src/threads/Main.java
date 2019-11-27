@@ -12,12 +12,15 @@ import java.util.ArrayList;
 
 public class Main extends JFrame {
     private static BufferedImage balloonImage;
-    private static Image explosionImage;
+    private static BufferedImage explosionImage;
     private static JButton startStopButton;
+    private static JLabel explosionLabel;
     private static ArrayList<JLabel> balloonLabels;
     private static ArrayList<Integer> velocities;
 
     private static int startPosition = 780;
+    private static int clicked = 0;
+    private static int missed = 0;
 
     private static boolean stopped = true;
 
@@ -34,9 +37,13 @@ public class Main extends JFrame {
             balloonImage.createGraphics().drawImage(bufferedBalloonImage, 6, 13,70, 70, null);
 
             BufferedImage bufferedExplosionImage = ImageIO.read(new File("src/threads/explosion.png"));
+            explosionImage = new BufferedImage(100, 100, bufferedExplosionImage.getType());
+            explosionImage.createGraphics().drawImage(bufferedExplosionImage, 0, 0,100,100, null);
         } catch (IOException ignored) {
             return;
         }
+
+        explosionLabel = new JLabel(new ImageIcon(explosionImage));
 
         balloonLabels = new ArrayList<>();
         velocities = new ArrayList<>();
@@ -47,11 +54,14 @@ public class Main extends JFrame {
             label.setBounds(i * 200 + 60, startPosition, 70, 70);
             int finalI = i;
             label.addMouseListener(new MouseAdapter() {
-                public int index = finalI;
+                int index = finalI;
 
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     super.mouseClicked(e);
+                    clicked += 1;
+                    getContentPane().add(explosionLabel);
+                    explosionLabel.setBounds(balloonLabels.get(index).getX() - 15, balloonLabels.get(index).getY() - 15, 70, 70);
                     getContentPane().remove(balloonLabels.get(index));
                     getContentPane().repaint();
                 }
@@ -62,6 +72,13 @@ public class Main extends JFrame {
 
         Container content = new JPanel();
         content.setLayout(null);
+        content.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                missed += 1;
+            }
+        });
 
         startStopButton = new JButton("Start/Stop");
         startStopButton.setBounds(0, 0, 100, 30);
@@ -72,8 +89,19 @@ public class Main extends JFrame {
                 Thread paint = new Thread(new PaintTask());
                 stopped = !stopped;
                 paint.start();
+            } else {
+                getContentPane().removeAll();
+                var frame = new JFrame();
+                frame.setLayout(new FlowLayout());
+                var scoreLabel = new Label();
+                scoreLabel.setText("Score: " + clicked);
+                var missedLabel = new Label();
+                missedLabel.setText("Missed: " + missed);
+                frame.add(scoreLabel);
+                frame.add(missedLabel);
+                frame.pack();
+                frame.setVisible(true);
             }
-            // TODO: print score
         });
 
         content.add(startStopButton);
